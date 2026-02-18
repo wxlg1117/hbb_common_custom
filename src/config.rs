@@ -64,11 +64,11 @@ lazy_static::lazy_static! {
         pub static ref EXE_RENDEZVOUS_SERVER: RwLock<String> = RwLock::new(
         option_env!("RENDEZVOUS_SERVER").unwrap_or("rs-ny.rustdesk.com").into()
     );    
-    //pub static ref APP_NAME: RwLock<String> = RwLock::new("RustDesk".to_owned());
+    pub static ref APP_NAME: RwLock<String> = RwLock::new("RustDesk".to_owned());
     //应用名称，读取Repository secrets值
-    pub static ref APP_NAME: RwLock<String> = RwLock::new(
-        option_env!("CUSTOM_APP_NAME").unwrap_or("RustDesk").into()
-    );
+    //pub static ref APP_NAME: RwLock<String> = RwLock::new(
+    //    option_env!("CUSTOM_APP_NAME").unwrap_or("RustDesk").into()
+    //);
     static ref KEY_PAIR: Mutex<Option<KeyPair>> = Default::default();
     static ref USER_DEFAULT_CONFIG: RwLock<(UserDefaultConfig, Instant)> = RwLock::new((UserDefaultConfig::load(), Instant::now()));
     pub static ref NEW_STORED_PEER_CONFIG: Mutex<HashSet<String>> = Default::default();
@@ -129,7 +129,7 @@ lazy_static::lazy_static! {
     pub static ref DEFAULT_LOCAL_SETTINGS: RwLock<HashMap<String, String>> = {
         let mut map = HashMap::new();
         //主题色，dark：深色，light：浅色，system：跟随系统
-        map.insert("theme".to_string(), "dark".to_string());
+        map.insert("theme".to_string(), "system".to_string());
         //使用D3D渲染
         map.insert("allow-d3d-render".to_string(), "Y".to_string());
         //启动时检查软件更新
