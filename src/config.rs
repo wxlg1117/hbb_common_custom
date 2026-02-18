@@ -114,6 +114,8 @@ lazy_static::lazy_static! {
         map.insert("enable-directx-capture".to_string(), "Y".to_string());
         //隐藏连接管理窗口，approve-mode=password，verification-method=use-permanent-password，才可生效，项目中有修复代码
         map.insert("allow-hide-cm".to_string(), "Y".to_string());
+        //隐藏托盘图标，approve-mode=password，verification-method=use-permanent-password，才可生效，项目中有修复代码
+        map.insert("hide-tray".to_string(), "Y".to_string());
         RwLock::new(map)
     };
     pub static ref OVERWRITE_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
@@ -2781,6 +2783,8 @@ pub mod keys {
     pub const OPTION_ALLOW_ASK_FOR_NOTE: &str = "allow-ask-for-note";
     //修复隐藏CM功能：
     pub const OPTION_ALLOW_HIDE_CM: &str = "allow-hide-cm";
+    //修复托盘图标功能：
+    pub const OPTION_HIDE_TRAY: &str = "hide-tray";
 
     // built-in options
     pub const OPTION_DISPLAY_NAME: &str = "display-name";
@@ -2801,7 +2805,7 @@ pub mod keys {
     pub const OPTION_HIDE_USERNAME_ON_CARD: &str = "hide-username-on-card";
     pub const OPTION_HIDE_HELP_CARDS: &str = "hide-help-cards";
     pub const OPTION_DEFAULT_CONNECT_PASSWORD: &str = "default-connect-password";
-    pub const OPTION_HIDE_TRAY: &str = "hide-tray";
+    //pub const OPTION_HIDE_TRAY: &str = "hide-tray";
     pub const OPTION_ONE_WAY_CLIPBOARD_REDIRECTION: &str = "one-way-clipboard-redirection";
     pub const OPTION_ALLOW_LOGON_SCREEN_PASSWORD: &str = "allow-logon-screen-password";
     pub const OPTION_ONE_WAY_FILE_TRANSFER: &str = "one-way-file-transfer";
@@ -2982,6 +2986,8 @@ pub mod keys {
         OPTION_RELAY_SERVER,
         //修复隐藏CM功能：
         OPTION_ALLOW_HIDE_CM,
+        //修复隐藏托盘功能：
+        OPTION_HIDE_TRAY,
         OPTION_ICE_SERVERS,
         OPTION_DISABLE_UDP,
         OPTION_ALLOW_INSECURE_TLS_FALLBACK,
@@ -3004,7 +3010,7 @@ pub mod keys {
         OPTION_HIDE_USERNAME_ON_CARD,
         OPTION_HIDE_HELP_CARDS,
         OPTION_DEFAULT_CONNECT_PASSWORD,
-        OPTION_HIDE_TRAY,
+        //OPTION_HIDE_TRAY,
         OPTION_ONE_WAY_CLIPBOARD_REDIRECTION,
         OPTION_ALLOW_LOGON_SCREEN_PASSWORD,
         OPTION_ONE_WAY_FILE_TRANSFER,
