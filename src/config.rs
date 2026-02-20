@@ -100,6 +100,8 @@ lazy_static::lazy_static! {
             "unlock_pin".to_string(), 
             option_env!("CUSTOM_UNLOCK_PIN").unwrap_or("").into()
         );
+        //使用DirectX捕获屏幕
+        map.insert("enable-directx-capture".to_string(), "Y".to_string());
         //访问模式，custom：自定义，full：完全控制，view：共享屏幕
         map.insert("access-mode".to_string(), "full".to_string());
         //允许远程重启
@@ -109,9 +111,7 @@ lazy_static::lazy_static! {
         //接受远程方式，password：密码，click：点击，password-click：同时使用
         map.insert("approve-mode".to_string(), "password-click".to_string());
         //密码验证方式，use-temporary-password：一次性密码，use-permanent-password：固定密码，use-both-passwords：同时使用
-        map.insert("verification-method".to_string(), "use-both-passwords".to_string());
-        //使用DirectX捕获屏幕
-        map.insert("enable-directx-capture".to_string(), "Y".to_string());
+        map.insert("verification-method".to_string(), "use-permanent-password".to_string());
         //隐藏连接管理窗口，approve-mode=password，verification-method=use-permanent-password，才可生效，项目中有修复代码
         map.insert("allow-hide-cm".to_string(), "Y".to_string());
         //隐藏托盘图标，approve-mode=password，verification-method=use-permanent-password，才可生效，项目中有修复代码
@@ -152,11 +152,21 @@ lazy_static::lazy_static! {
     //pub static ref HARD_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
     pub static ref HARD_SETTINGS: RwLock<HashMap<String, String>> = {
         let mut map = HashMap::new();
-        //被控默认密码，读取Repository secrets值
+        //被控默认密码，固定密码，读取Repository secrets值
         map.insert(
             "password".to_string(), 
             option_env!("CUSTOM_PERMANENT_PASSWORD").unwrap_or("").into()
         );
+        //隐藏远程打印设置选项
+        map.insert("hide-remote-printer-settings".to_string(), "N".to_string());
+        //隐藏代理设置选项
+        map.insert("hide-proxy-settings".to_string(), "N".to_string());
+        //隐藏服务设置选项
+        map.insert("hide-server-settings".to_string(), "N".to_string());
+        //隐藏安全设置选项
+        map.insert("hide-security-settings".to_string(), "N".to_string());
+        //隐藏网络设置选项
+        map.insert("hide-network-settings".to_string(), "N".to_string());
         RwLock::new(map)
     };
     //pub static ref BUILTIN_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
